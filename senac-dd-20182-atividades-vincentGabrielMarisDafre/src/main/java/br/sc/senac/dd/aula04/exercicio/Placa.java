@@ -4,6 +4,13 @@ public class Placa {
 	private String estado;
 	private String id ;
 	private  String cor;
+	public Placa(String estado, String id, String cor) {
+		super();
+		this.estado = estado;
+		this.id = id;
+		this.cor = cor;
+	}
+	
 	public String getEstado() {
 		return estado;
 	}

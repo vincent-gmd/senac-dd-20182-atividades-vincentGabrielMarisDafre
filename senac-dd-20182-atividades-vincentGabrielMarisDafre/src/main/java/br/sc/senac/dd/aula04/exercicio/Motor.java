@@ -3,6 +3,11 @@ package br.sc.senac.dd.aula04.exercicio;
 public class Motor {
 	private int cilindros;
 	private int potencia;
+public Motor(int cilindros, int potencia) {
+		super();
+		this.cilindros = cilindros;
+		this.potencia = potencia;
+	}
 public int getCilindros() {
 	return cilindros;
 }
