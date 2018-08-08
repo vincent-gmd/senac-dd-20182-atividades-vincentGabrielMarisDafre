@@ -1,9 +1,9 @@
 package br.sc.senac.dd.aula04.exercicio;
 
 public class Placa {
-	String estado;
-	String id ;
-	String cor;
+	private String estado;
+	private String id ;
+	private  String cor;
 	public String getEstado() {
 		return estado;
 	}

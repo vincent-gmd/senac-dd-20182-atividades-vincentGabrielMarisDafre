@@ -1,7 +1,7 @@
 package br.sc.senac.dd.aula04.exercicio;
 
 public class Caminhao extends Veiculo {
-	Carroceria carroceria;
+	private Carroceria carroceria;
 
 
 

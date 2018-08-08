@@ -1,8 +1,8 @@
 package br.sc.senac.dd.aula04.exercicio;
 
 public class Motor {
-int cilindros;
-int potencia;
+	private int cilindros;
+	private int potencia;
 public int getCilindros() {
 	return cilindros;
 }

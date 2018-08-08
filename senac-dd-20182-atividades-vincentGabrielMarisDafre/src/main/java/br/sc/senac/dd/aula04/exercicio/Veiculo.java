@@ -1,10 +1,10 @@
 package br.sc.senac.dd.aula04.exercicio;
 
 public abstract class Veiculo {
-	Motor motor;
-	Placa placa;
-	int pesoKG;
-	int numMaxPassagero;
+	private Motor motor;
+	private Placa placa;
+	private int pesoKG;
+	private int numMaxPassagero;
 	public Veiculo(Motor motor, Placa placa, int pesoKG, int numMaxPassagero) {
 		super();
 		this.motor = motor;
