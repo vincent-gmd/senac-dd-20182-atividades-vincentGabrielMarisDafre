@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 public class SelectCadastro extends JFrame {
 
 	private JPanel contentPane;
+	
 
 	/**
 	 * Launch the application.
@@ -52,7 +53,7 @@ public class SelectCadastro extends JFrame {
 		JButton btnCadastrarMoto = new JButton("cadastrar moto");
 		btnCadastrarMoto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				CadastroFrame.open(1);
 			}
 		});
 		GridBagConstraints gbc_btnCadastrarMoto = new GridBagConstraints();
@@ -64,7 +65,7 @@ public class SelectCadastro extends JFrame {
 		JButton btnCadastrarCarro = new JButton("cadastrar carro");
 		btnCadastrarCarro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				CadastroFrame.open(2);
 			}
 		});
 		GridBagConstraints gbc_btnCadastrarCarro = new GridBagConstraints();
@@ -76,7 +77,7 @@ public class SelectCadastro extends JFrame {
 		JButton btnCadastrarCaminhao = new JButton("cadastrar caminhão");
 		btnCadastrarCaminhao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				CadastroFrame.open(3);
 			}
 		});
 		GridBagConstraints gbc_btnCadastrarCaminhao = new GridBagConstraints();

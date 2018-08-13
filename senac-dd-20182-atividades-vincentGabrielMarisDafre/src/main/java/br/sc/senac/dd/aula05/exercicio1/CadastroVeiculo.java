@@ -22,8 +22,10 @@ public class CadastroVeiculo extends JPanel {
 	private JTextField textField_placaCor;
 	private JTextField textField_pesoGK;
 	private JTextField textField_maxPassageros;
-	private VeiculoForm v;	
+	protected VeiculoForm f;	
 	private int tipo =0;
+	
+	
 	/**
 	 * Create the panel.
 	 */
@@ -186,20 +188,30 @@ public class CadastroVeiculo extends JPanel {
 	}
 	public void cadastra() {
 		
-		v=new VeiculoForm();
-		v.setCilindros(textField_cilindros.getText());
-		v.setPotencia(textField_potencia.getText());
-		v.setEstado(textField_estado.getText());
-		v.setId(textField_placaId.getText());
-		v.setCor(textField_placaCor.getText());	
-		v.setPesoKG((textField_pesoGK.getText()));
-		v.setNumMaxPassagero((textField_maxPassageros.getText()));
-		CadastroControler cadastroControler= new CadastroControler() ;
+		
+		getForm().setCilindros(textField_cilindros.getText());
+		getForm().setPotencia(textField_potencia.getText());
+		getForm().setEstado(textField_estado.getText());
+		getForm().setId(textField_placaId.getText());
+		getForm().setCor(textField_placaCor.getText());	
+		getForm().setPesoKG((textField_pesoGK.getText()));
+		getForm().setNumMaxPassagero((textField_maxPassageros.getText()));
+		
 		
 		if (tipo>0) {
-			cadastroControler.cadastrarVeiculo(tipo, v);
+			CadastroControler cadastroControler= new CadastroControler() ;
+			cadastroControler.cadastrarVeiculo(tipo, getForm());
 		}
 		
+	}
+	public VeiculoForm getForm() {
+		if(f==null) {
+			setForm(new VeiculoForm());
+		}
+		return f;
+	}
+	public void setForm(VeiculoForm v) {
+		this.f = v;
 	}
 
 }

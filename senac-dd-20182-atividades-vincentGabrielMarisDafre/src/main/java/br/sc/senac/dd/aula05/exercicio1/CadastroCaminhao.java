@@ -1,17 +1,24 @@
 package br.sc.senac.dd.aula05.exercicio1;
 
-import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import br.sc.senac.dd.aula05.exercicio1.controler.CadastroControler;
+import br.sc.senac.dd.aula05.exercicio1.model.CaminhaoForm;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 public class CadastroCaminhao extends CadastroVeiculo {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3657103190532873873L;
 	private JTextField txtCarroceriaPeso;
 	private JTextField txtCarroceriaAltura;
 	private JTextField txtCarroceriaLargura;
 	private JTextField txtCarroceriaComprimento;
-
+	
+	protected CaminhaoForm f;
 
 
 	public CadastroCaminhao() {
@@ -62,6 +69,24 @@ public class CadastroCaminhao extends CadastroVeiculo {
 		
 	}
 	
-	
+		public void cadastra() {
+			super.cadastra();
+			
+			getForm().setPesoKGCarroceria(txtCarroceriaPeso.getText());	
+			getForm().setAltura((txtCarroceriaAltura.getText()));
+			getForm().setLargura((txtCarroceriaLargura.getText()));
+			getForm().setComprimento(txtCarroceriaComprimento.getText());
+			CadastroControler cadastroControler= new CadastroControler() ;
+			cadastroControler.cadastrarCaminhao(getForm());		
+	}
+		public CaminhaoForm getForm() {
+			if(f==null) {
+				setForm(new CaminhaoForm());
+			}
+			return f;
+		}
+		public void setForm(CaminhaoForm v) {
+			this.f = v;
+		}
 
 }
