@@ -9,7 +9,7 @@ import br.sc.senac.dd.aula04.exercicio.Placa;
 import br.sc.senac.dd.aula05.exercicio1.model.CaminhaoForm;
 import br.sc.senac.dd.aula05.exercicio1.model.VeiculoForm;
 
-public class CadastroControler {
+public class CadastroVeiculoControler {
 	
 	public int cadastrarVeiculo(int tipo,VeiculoForm f){
 		switch (tipo) {
