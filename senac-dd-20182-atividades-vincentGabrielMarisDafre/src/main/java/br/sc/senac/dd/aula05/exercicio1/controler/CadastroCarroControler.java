@@ -1,6 +1,6 @@
 package br.sc.senac.dd.aula05.exercicio1.controler;
 
-import br.sc.senac.dd.aula04.exercicio.Automovel;
+import br.sc.senac.dd.aula04.exercicio.Carro;
 import br.sc.senac.dd.aula04.exercicio.Caminhao;
 import br.sc.senac.dd.aula04.exercicio.Carroceria;
 import br.sc.senac.dd.aula04.exercicio.Moto;
@@ -47,7 +47,7 @@ public class CadastroCarroControler {
 		int pesoKG =Integer.parseInt(f.getPesoKG());
 		int numMaxPassagero = Integer.parseInt(f.getNumMaxPassagero());
 		
-		new Automovel(m, p, pesoKG, numMaxPassagero);
+		new Carro(m, p, pesoKG, numMaxPassagero);
 		return 0;
 	}
 	public int cadastrarCaminhao(CaminhaoForm f){
