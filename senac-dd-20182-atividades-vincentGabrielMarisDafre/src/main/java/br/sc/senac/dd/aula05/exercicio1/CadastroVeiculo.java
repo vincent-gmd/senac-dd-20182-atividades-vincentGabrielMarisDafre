@@ -2,7 +2,7 @@ package br.sc.senac.dd.aula05.exercicio1;
 
 import javax.swing.JPanel;
 
-import br.sc.senac.dd.aula05.exercicio1.controler.CadastroVeiculoControler;
+import br.sc.senac.dd.aula05.exercicio1.controler.CadastroCarroControler;
 import br.sc.senac.dd.aula05.exercicio1.model.VeiculoForm;
 
 import java.awt.GridBagLayout;
@@ -199,7 +199,7 @@ public class CadastroVeiculo extends JPanel {
 		
 		
 		if (tipo>0) {
-			CadastroVeiculoControler cadastroControler= new CadastroVeiculoControler() ;
+			CadastroCarroControler cadastroControler= new CadastroCarroControler() ;
 			cadastroControler.cadastrarVeiculo(tipo, getForm());
 		}
 		

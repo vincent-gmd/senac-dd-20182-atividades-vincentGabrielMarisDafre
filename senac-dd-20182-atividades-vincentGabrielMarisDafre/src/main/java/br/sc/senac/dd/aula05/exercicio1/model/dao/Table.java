@@ -17,6 +17,4 @@ public class Table {
 	public void setColunas(ArrayList<Coluna> colunas) {
 		this.colunas = colunas;
 	}
-	
-
 }
