@@ -23,7 +23,12 @@ public class Calculadora extends JFrame {
 	private static final long serialVersionUID = 2096125199821278351L;
 	private JPanel contentPane;
 	private JTextField textFieldDisplay;
-
+	private Double num1=null;
+	private Double num2=null;
+	private short neg1=1;
+	private short neg2=1;
+	private Op op=null;
+	private int pointCount=0;
 	/**
 	 * Launch the application.
 	 */
@@ -45,7 +50,7 @@ public class Calculadora extends JFrame {
 	 */
 	public Calculadora() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 231, 232);
+		setBounds(100, 100, 210, 232);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -57,6 +62,7 @@ public class Calculadora extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		
 		textFieldDisplay = new JTextField();
+		textFieldDisplay.setEditable(false);
 		GridBagConstraints gbc_textFieldDisplay = new GridBagConstraints();
 		gbc_textFieldDisplay.anchor = GridBagConstraints.NORTH;
 		gbc_textFieldDisplay.fill = GridBagConstraints.HORIZONTAL;
@@ -70,6 +76,7 @@ public class Calculadora extends JFrame {
 		JButton button_1 = new JButton("1");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				numberPress(1);
 			}
 		});
 		GridBagConstraints gbc_button_1 = new GridBagConstraints();
@@ -82,6 +89,7 @@ public class Calculadora extends JFrame {
 		JButton button_2 = new JButton("2");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				numberPress(2);
 			}
 		});
 		GridBagConstraints gbc_button_2 = new GridBagConstraints();
@@ -94,6 +102,9 @@ public class Calculadora extends JFrame {
 		JButton button_3 = new JButton("3");
 		button_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				numberPress(3);
+				
+				
 			}
 		});
 		GridBagConstraints gbc_button_3 = new GridBagConstraints();
@@ -106,6 +117,7 @@ public class Calculadora extends JFrame {
 		JButton buttonPlus = new JButton("+");
 		buttonPlus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				opPress(Op.plus);
 			}
 		});
 		GridBagConstraints gbc_buttonPlus = new GridBagConstraints();
@@ -118,6 +130,8 @@ public class Calculadora extends JFrame {
 		JButton button_4 = new JButton("4");
 		button_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				numberPress(4);
+				
 			}
 		});
 		GridBagConstraints gbc_button_4 = new GridBagConstraints();
@@ -130,6 +144,8 @@ public class Calculadora extends JFrame {
 		JButton button_5 = new JButton("5");
 		button_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				numberPress(5);
+				
 			}
 		});
 		GridBagConstraints gbc_button_5 = new GridBagConstraints();
@@ -142,6 +158,8 @@ public class Calculadora extends JFrame {
 		JButton button_6 = new JButton("6");
 		button_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				numberPress(6);
+				
 			}
 		});
 		GridBagConstraints gbc_button_6 = new GridBagConstraints();
@@ -154,6 +172,8 @@ public class Calculadora extends JFrame {
 		JButton buttonMinus = new JButton("-");
 		buttonMinus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				opPress(Op.minus);
+
 			}
 		});
 		GridBagConstraints gbc_buttonMinus = new GridBagConstraints();
@@ -167,6 +187,8 @@ public class Calculadora extends JFrame {
 		JButton button_7 = new JButton("7");
 		button_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				numberPress(7);
+				
 			}
 		});
 		GridBagConstraints gbc_button_7 = new GridBagConstraints();
@@ -179,6 +201,8 @@ public class Calculadora extends JFrame {
 		JButton button_8 = new JButton("8");
 		button_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				numberPress(8);
+				
 			}
 		});
 		GridBagConstraints gbc_button_8 = new GridBagConstraints();
@@ -191,6 +215,8 @@ public class Calculadora extends JFrame {
 		JButton button_9 = new JButton("9");
 		button_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				numberPress(9);
+				
 			}
 		});
 		GridBagConstraints gbc_button_9 = new GridBagConstraints();
@@ -200,24 +226,27 @@ public class Calculadora extends JFrame {
 		gbc_button_9.gridy = 3;
 		contentPane.add(button_9, gbc_button_9);
 		
-		JButton buttonMultiply = new JButton("*");
-		buttonMultiply.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		GridBagConstraints gbc_buttonMultiply = new GridBagConstraints();
-		gbc_buttonMultiply.anchor = GridBagConstraints.NORTH;
-		gbc_buttonMultiply.fill = GridBagConstraints.HORIZONTAL;
-		gbc_buttonMultiply.insets = new Insets(0, 0, 5, 0);
-		gbc_buttonMultiply.gridx = 3;
-		gbc_buttonMultiply.gridy = 3;
-		contentPane.add(buttonMultiply, gbc_buttonMultiply);
-		
 		JButton button_0 = new JButton("0");
 		button_0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				numberPress(0);
 			}
 		});
+		
+		JButton buttonMultiply = new JButton("*");
+		buttonMultiply.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				opPress(Op.multiply);
+
+			}
+		});
+		GridBagConstraints gbc_buttonMultiply = new GridBagConstraints();
+		gbc_buttonMultiply.insets = new Insets(0, 0, 5, 0);
+		gbc_buttonMultiply.anchor = GridBagConstraints.NORTH;
+		gbc_buttonMultiply.fill = GridBagConstraints.HORIZONTAL;
+		gbc_buttonMultiply.gridx = 3;
+		gbc_buttonMultiply.gridy = 3;
+		contentPane.add(buttonMultiply, gbc_buttonMultiply);
 		GridBagConstraints gbc_button_0 = new GridBagConstraints();
 		gbc_button_0.anchor = GridBagConstraints.NORTHWEST;
 		gbc_button_0.insets = new Insets(0, 0, 5, 5);
@@ -228,8 +257,22 @@ public class Calculadora extends JFrame {
 		JButton buttonDivide = new JButton("/");
 		buttonDivide.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				opPress(Op.divide);
+
 			}
 		});
+		
+		JButton button = new JButton(".");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dotPress();
+			}
+		});
+		GridBagConstraints gbc_button = new GridBagConstraints();
+		gbc_button.insets = new Insets(0, 0, 5, 5);
+		gbc_button.gridx = 2;
+		gbc_button.gridy = 4;
+		contentPane.add(button, gbc_button);
 		GridBagConstraints gbc_buttonDivide = new GridBagConstraints();
 		gbc_buttonDivide.anchor = GridBagConstraints.NORTH;
 		gbc_buttonDivide.fill = GridBagConstraints.HORIZONTAL;
@@ -238,16 +281,185 @@ public class Calculadora extends JFrame {
 		gbc_buttonDivide.gridy = 4;
 		contentPane.add(buttonDivide, gbc_buttonDivide);
 		
+		JButton buttonCe = new JButton("ce");
+		buttonCe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				opPress(Op.ce);
+
+			}
+		});
+		
 		JButton buttonResult = new JButton("=");
 		buttonResult.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				opPress(Op.equals);
 			}
 		});
 		GridBagConstraints gbc_buttonResult = new GridBagConstraints();
+		gbc_buttonResult.insets = new Insets(0, 0, 0, 5);
 		gbc_buttonResult.anchor = GridBagConstraints.NORTHWEST;
-		gbc_buttonResult.gridx = 3;
+		gbc_buttonResult.gridx = 2;
 		gbc_buttonResult.gridy = 5;
 		contentPane.add(buttonResult, gbc_buttonResult);
+		GridBagConstraints gbc_buttonCe = new GridBagConstraints();
+		gbc_buttonCe.gridx = 3;
+		gbc_buttonCe.gridy = 5;
+		contentPane.add(buttonCe, gbc_buttonCe);
+	}
+	 void dotPress() {
+		 if(op!=null||op==Op.equals) {
+		if (num1==null) {
+			num1=0d;
+			pointCount=1;
+					
+		}else if(pointCount>0) {
+			return;
+		}else {
+			pointCount=1;
+		}
+		}else{
+			if (num1==null) {
+				num1=0d;
+				pointCount=1;
+						
+			}else if(pointCount>0) {
+				return;
+			}else {
+				pointCount=1;
+			}
+			
+		}
+		
+	}
+
+	void numberPress(double number) {
+		if(num1==null || op==Op.equals) {
+			num1=number;
+			op=null;
+		}else if(op==null) {
+			num1=append(num1,number);
+		}else if(num2==null) {
+			this.pointCount=0;
+			num2=number;
+		}else {
+			num2=append(num2,number);
+		}
+		updateText();
+		
+	}
+	void opPress(Op op) {
+		if(op==Op.ce) {
+			this.num1=null;
+			this.op=null;
+			this.num2=null;
+			this.pointCount=0;
+			neg1=1;
+			neg2=1;
+			updateText();
+			return;
+		}
+		if(	 num1!=null && num2!=null && op!=null) {
+			solve();
+			this.op=op;
+			updateText();
+			return;
+		}
+		if (op==Op.minus) {
+			if(	 num1==null ) {
+				neg1 = -1;
+				return;
+			}else if(op == null||op==Op.plus||op==Op.minus) {
+				this.op =op;
+			}else if (num2==null) {
+				neg2 = -1;
+			}
+			updateText();
+			return;
+		} 
+		if(	 num1==null ) {
+				return;
+		}else if(op==Op.equals){
+			return;
+		}else {
+			this.op=op;
+		}
+
+		updateText();
+	}
+	
+	private void updateText() {
+		String s="";
+		if( neg1==-1) {
+			s=s+"-";
+		}
+		if( num1!=null) {
+			s=s+fmt(num1);
+		}
+		if( op!=null) {
+			s=s+op.toString();
+		}
+		if( neg2==-1) {
+			s=s+"-";
+		}
+		if( num2!=null) {
+			s=s+fmt(num2);
+		}
+			
+			textFieldDisplay.setText(s);
+	}
+	public static String fmt(double d)
+	{
+	    if(d == (long) d)
+	        return String.format("%d",(long)d);
+	    else
+	        return String.format("%s",d);
+	}
+
+
+	void solve() {
+			switch (op) {
+		case plus:
+			num1=(num1*neg1)+(num2*neg2);
+			break;
+			
+		case minus:
+			num1=(num1*neg1)-(num2*neg2);
+			break;
+			
+		case divide:
+			num1=(num1*neg1)/(num2*neg2);
+			break;
+			
+		case multiply:
+			num1=(num1*neg1)*(num2*neg2);
+			break;
+		
+				default:
+					break;
+		}
+		
+		
+		this.op=null;
+		this.num2=null;
+		this.pointCount=0;
+		neg1=1;
+		neg2=1;
+		if (num1<0) {
+			neg1=-1;
+			num1=-num1;
+		}
+	}
+	Double append(Double in,Double append) {
+		if(pointCount>0) {
+			double re = in+(append*Math.pow(10,-pointCount));
+			pointCount++;
+			return re;
+		}else {
+			return  (in*10)+append;
+		}
+		
+		
+		
 	}
 
 }
