@@ -15,6 +15,9 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.awt.event.ActionEvent;
 
 public class Calculadora extends JFrame {
@@ -29,6 +32,8 @@ public class Calculadora extends JFrame {
 	private short neg2=1;
 	private Op op=null;
 	private int pointCount=0;
+	private short active=0;
+	private int trail =0;
 	/**
 	 * Launch the application.
 	 */
@@ -336,13 +341,17 @@ public class Calculadora extends JFrame {
 		if(num1==null || op==Op.equals) {
 			num1=number;
 			op=null;
+			active=1;
 		}else if(op==null) {
 			num1=append(num1,number);
+			active=1;
 		}else if(num2==null) {
 			this.pointCount=0;
 			num2=number;
+			active=2;
 		}else {
 			num2=append(num2,number);
+			active=2;
 		}
 		updateText();
 		
@@ -368,7 +377,7 @@ public class Calculadora extends JFrame {
 			if(	 num1==null ) {
 				neg1 = -1;
 				return;
-			}else if(op == null||op==Op.plus||op==Op.minus) {
+			}else if(this.op == null||this.op==Op.plus||this.op==Op.minus) {
 				this.op =op;
 			}else if (num2==null) {
 				neg2 = -1;
@@ -393,7 +402,14 @@ public class Calculadora extends JFrame {
 			s=s+"-";
 		}
 		if( num1!=null) {
+			if(num1==0d&&active==1&&pointCount>0) {
+				s=s+"0.";
+				for(int i=1;i<pointCount;i++) {
+					s=s+"0";
+				}
+			}else {
 			s=s+fmt(num1);
+			}
 		}
 		if( op!=null) {
 			s=s+op.toString();
@@ -402,17 +418,29 @@ public class Calculadora extends JFrame {
 			s=s+"-";
 		}
 		if( num2!=null) {
+			if(num2==0d&&active==2&&pointCount>0) {
+				s=s+"0.";
+				for(int i=1;i<pointCount;i++) {
+					s=s+"0";
+				}
+			}else {
 			s=s+fmt(num2);
+			}
 		}
 			
 			textFieldDisplay.setText(s);
 	}
-	public static String fmt(double d)
+	public  String fmt(double d)
 	{
-	    if(d == (long) d)
+	    if(d == (long) d) {
 	        return String.format("%d",(long)d);
-	    else
-	        return String.format("%s",d);
+	    } else {
+	     //   return String.format("%s",d);
+	    DecimalFormat df = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+	    df.setMaximumFractionDigits(340);
+
+	    return df.format(d); 
+	    }
 	}
 
 
