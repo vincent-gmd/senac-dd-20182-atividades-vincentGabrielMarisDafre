@@ -3,7 +3,7 @@ package br.sc.senac.dd.aula6.exercicio4.model.vo;
 /**
  * Classe criada na disciplina de POO (2018/1)
  * 
- * Representa um Value Object (VO) de um Colecionador
+ * Representa um Value Object (VO) de um Funcionario
  * 
  * @author Adriano de Melo
  * 
@@ -16,9 +16,9 @@ public class FuncionarioVO {
 	private String telefone;
 	private String email;
 	
-	public FuncionarioVO(int idColecionador, String nome, String cpf, String telefone, String email) {
+	public FuncionarioVO(int idFuncionario, String nome, String cpf, String telefone, String email) {
 		super();
-		this.idFuncionario = idColecionador;
+		this.idFuncionario = idFuncionario;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.telefone = telefone;

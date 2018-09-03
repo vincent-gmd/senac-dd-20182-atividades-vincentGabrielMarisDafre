@@ -3,74 +3,70 @@ package br.sc.senac.dd.aula6.exercicio4.model.bo;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import br.sc.senac.dd.aula6.exercicio4.model.dao.ColecionadorDAO;
+import br.sc.senac.dd.aula6.exercicio4.model.dao.FuncionarioDAO;
 import br.sc.senac.dd.aula6.exercicio4.model.vo.FuncionarioVO;
 
-/**
- * Classe criada na disciplina de POO (2018/1)
- * @author Adriano de Melo
- *
- */
+
 public class FuncionarioBO {
 
-	public void cadastrarColecionadorBO(FuncionarioVO colecionadorVO) throws SQLException {
-		ColecionadorDAO colecionadorDAO = new ColecionadorDAO();
-		if(colecionadorDAO.existeRegistroPorCpf(colecionadorVO.getCpf())){
-			System.out.println("\nColecionador já Cadastrado");
+	public void cadastrarFuncionarioBO(FuncionarioVO FuncionarioVO) throws SQLException {
+		FuncionarioDAO FuncionarioDAO = new FuncionarioDAO();
+		if(FuncionarioDAO.existeRegistroPorCpf(FuncionarioVO.getCpf())){
+			System.out.println("\nFuncionario já Cadastrado");
 		} else {
-			int idColecionador = colecionadorDAO.inserir(colecionadorVO);
-			if(idColecionador > 0){
-				System.out.println("\nColecionador cadastrado com Sucesso.");
+			int idFuncionario = FuncionarioDAO.inserir(FuncionarioVO);
+			if(idFuncionario > 0){
+				System.out.println("\nFuncionario cadastrado com Sucesso.");
 			} else {
-				System.out.println("\nNão foi possível cadastrar o Colecionador.");
+				System.out.println("\nNão foi possível cadastrar o Funcionario.");
 			}
 		}
 	}
 
-	public void excluirColecionadorBO(FuncionarioVO colecionadorVO) throws SQLException {
-		ColecionadorDAO colecionadorDAO = new ColecionadorDAO();
-		if(colecionadorDAO.existeRegistroPorIdColecionador(colecionadorVO.getIdFuncionario())){
-			boolean excluiuColecionador = colecionadorDAO.excluir(colecionadorVO.getIdFuncionario());
-			if(excluiuColecionador){
-				System.out.println("\nColecionador excluído com Sucesso.");
+	public void excluirFuncionarioBO(FuncionarioVO FuncionarioVO) throws SQLException {
+		FuncionarioDAO FuncionarioDAO = new FuncionarioDAO();
+		if(FuncionarioDAO.existeRegistroPorIdFuncionario(FuncionarioVO.getIdFuncionario())){
+			boolean excluiuFuncionario = FuncionarioDAO.excluir(FuncionarioVO.getIdFuncionario());
+			if(excluiuFuncionario){
+				System.out.println("\nFuncionario excluído com Sucesso.");
 			} else {
-				System.out.println("\nNão foi possível excluir o Colecionador.");
+				System.out.println("\nNão foi possível excluir o Funcionario.");
 			}
 		} else {
-			System.out.println("\nColecionador não existe na base da dados.");
+			System.out.println("\nFuncionario não existe na base da dados.");
 		}
 	}
 
-	public void atualizarColecionadorBO(FuncionarioVO colecionadorVO) throws SQLException {
-		ColecionadorDAO colecionadorDAO = new ColecionadorDAO();
-		if(colecionadorDAO.existeRegistroPorIdColecionador(colecionadorVO.getIdFuncionario())){
-			boolean sucessoUpdate = colecionadorDAO.atualizar(colecionadorVO, colecionadorVO.getIdFuncionario());
+	public void atualizarFuncionarioBO(FuncionarioVO FuncionarioVO) throws SQLException {
+		FuncionarioDAO FuncionarioDAO = new FuncionarioDAO();
+		if(FuncionarioDAO.existeRegistroPorIdFuncionario(FuncionarioVO.getIdFuncionario())){
+			boolean sucessoUpdate = FuncionarioDAO.atualizar(FuncionarioVO, FuncionarioVO.getIdFuncionario());
 			if(sucessoUpdate){
-				System.out.println("\nColecionador atualizado com Sucesso.");
+				System.out.println("\nFuncionario atualizado com Sucesso.");
 			} else {
-				System.out.println("\nNão foi possível atualizar o Colecionador.");
+				System.out.println("\nNão foi possível atualizar o Funcionario.");
 			}
 		} else {
-			System.out.println("\nColecionador ainda não foi cadastrado.");
+			System.out.println("\nFuncionario ainda não foi cadastrado.");
 		}
 	}
 	
-	public ArrayList<FuncionarioVO> consultarColecionadoresBO() throws SQLException {
-		ColecionadorDAO colecionadorDAO = new ColecionadorDAO();
-		ArrayList<FuncionarioVO> colecionadoresVO = (ArrayList<FuncionarioVO>) colecionadorDAO.listarTodos();
-		if(colecionadoresVO.isEmpty()){
-			System.out.println("\nLista de Colecionador não Localizada.");
+	public ArrayList<FuncionarioVO> consultarFuncionarioesBO() throws SQLException {
+		FuncionarioDAO FuncionarioDAO = new FuncionarioDAO();
+		ArrayList<FuncionarioVO> FuncionarioesVO = (ArrayList<FuncionarioVO>) FuncionarioDAO.listarTodos();
+		if(FuncionarioesVO.isEmpty()){
+			System.out.println("\nLista de Funcionario não Localizada.");
 		}
-		return colecionadoresVO;
+		return FuncionarioesVO;
 	}
 
-	public FuncionarioVO consultarColecionadorBO(FuncionarioVO colecionadorVO) throws SQLException {
-		ColecionadorDAO colecionadorDAO = new ColecionadorDAO();
-		FuncionarioVO colecionador = colecionadorDAO.pesquisarPorId(colecionadorVO.getIdFuncionario());
-		if(colecionador == null){
-			System.out.println("\nColecionador não Localizado.");
+	public FuncionarioVO consultarFuncionarioBO(FuncionarioVO FuncionarioVO) throws SQLException {
+		FuncionarioDAO FuncionarioDAO = new FuncionarioDAO();
+		FuncionarioVO Funcionario = FuncionarioDAO.pesquisarPorId(FuncionarioVO.getIdFuncionario());
+		if(Funcionario == null){
+			System.out.println("\nFuncionario não Localizado.");
 		}
-		return colecionador;
+		return Funcionario;
 	}
 
 }

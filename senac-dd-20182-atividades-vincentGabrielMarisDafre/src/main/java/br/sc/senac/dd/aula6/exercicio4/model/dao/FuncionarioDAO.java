@@ -5,47 +5,41 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import br.sc.senac.dd.aula6.exercicio4.model.vo.FuncionarioVO;
 
-/**
- * Classe criada na disciplina de POO (2018/1)
- * 
- * Representa um Data Access Object (DAO) da classe ColecionadorVO.
- * 
- * @author Adriano de Melo
- *  	   Vilmar César Pereira Júnior (continuação em Desenvolvimento Desktop 2018/2)
- * 
- */
-public class ColecionadorDAO extends BaseDAO<FuncionarioVO> {
+
+public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {
 	
 	@Override
 	public String getNomeTabela() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return "Funcionario";
 	}
 
 	@Override
 	public String getNomeColunaChavePrimaria() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return "idFuncionario";
 	}
 
 	@Override
 	public String getNomesColunasInsert() {
-		// TODO Auto-generated method stub
-		return null;
+		return "idFuncionario," + 
+				"nome," + 
+				"cpf," + 
+				"telefone," + 
+				"email";
 	}
 
 	@Override
 	public String getInterrogacoesInsert() {
-		// TODO Auto-generated method stub
-		return null;
+		return "?,?,?,?,?";
 	}
 
 	@Override
 	public void setValoresAtributosInsert(FuncionarioVO entidade, PreparedStatement preparedStmt) {
-		// TODO Auto-generated method stub
 		/**
 		 * Exemplos:
 		 * preparedStmt.setInt(1, entidade.getId());  
@@ -57,13 +51,12 @@ public class ColecionadorDAO extends BaseDAO<FuncionarioVO> {
 
 	@Override
 	public String getValoresClausulaSetUpdate(FuncionarioVO entidade) {
-		// TODO Auto-generated method stub
 		
 		/**
 		 * Exemplos:
 		 * 
 		 * String clausulaSet = "";
-		 * clausulaSet = getNomeColunaChavePrimaria() " = " + entidade.getIdColecionador() + ",";
+		 * clausulaSet = getNomeColunaChavePrimaria() " = " + entidade.getIdFuncionario() + ",";
 		 * clausulaSet += "NOME ='" + entidade.getNome() + "'";
 		 */
 		
@@ -72,32 +65,59 @@ public class ColecionadorDAO extends BaseDAO<FuncionarioVO> {
 
 	@Override
 	public FuncionarioVO construirObjetoDoResultSet(ResultSet resultado) {
-		// TODO Auto-generated method stub
 		
-//      Exemplo:
-//      ColecionadorVO colecionadorVO = new ColecionadorVO();
-//		colecionadorVO.setIdColecionador(Integer.parseInt(resultado.getString(1)));
-//		colecionadorVO.setNome(resultado.getString(2));
-//		colecionadorVO.setCpf(resultado.getString(3));
-//		colecionadorVO.setTelefone(resultado.getString(4));
-//		colecionadorVO.setEmail(resultado.getString(5));
-//		colecionadoresVO.add(colecionadorVO);
-		return null;
+		
+			FuncionarioVO FuncionarioVO = new FuncionarioVO();
+			try {
+				FuncionarioVO.setIdFuncionario(Integer.parseInt(resultado.getString(1)));
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				FuncionarioVO.setNome(resultado.getString(2));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				FuncionarioVO.setCpf(resultado.getString(3));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				FuncionarioVO.setTelefone(resultado.getString(4));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				FuncionarioVO.setEmail(resultado.getString(5));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		return FuncionarioVO;
 	}
 
-	public boolean existeRegistroPorCpf(String cpf) {
+	public Boolean existeRegistroPorCpf(String cpf) {
 		Connection conn = Banco.getConnection();
 		Statement stmt = Banco.getStatement(conn);
 		ResultSet resultado = null;
-		String query = "SELECT * FROM colecionador WHERE cpf like '" + cpf + "'";
+		String query = "SELECT * FROM Funcionario WHERE cpf like '" + cpf + "'";
 		try {
 			resultado = stmt.executeQuery(query);
 			if (resultado.next()){
 				return true;
 			}
 		} catch (SQLException e) {
-			System.out.println("Erro ao executar a Query que verifica existência de Colecionador por CPF.");
-			return false;
+			System.out.println("Erro ao executar a Query que verifica existência de Funcionario por CPF.");
+			return null;
 		} finally {
 			Banco.closeResultSet(resultado);
 			Banco.closeStatement(stmt);
@@ -106,11 +126,11 @@ public class ColecionadorDAO extends BaseDAO<FuncionarioVO> {
 		return false;
 	}
 
-	public boolean existeRegistroPorIdColecionador(int idColecionador) {
+	public boolean existeRegistroPorIdFuncionario(int idFuncionario) {
 		Connection conn = Banco.getConnection();
 		Statement stmt = Banco.getStatement(conn);
 		ResultSet resultado = null;
-		String query = "SELECT * FROM colecionador WHERE idcolecionador = " + idColecionador;
+		String query = "SELECT * FROM Funcionario WHERE idFuncionario = " + idFuncionario;
 		try {
 			resultado = stmt.executeQuery(query);
 			if (resultado.next()){

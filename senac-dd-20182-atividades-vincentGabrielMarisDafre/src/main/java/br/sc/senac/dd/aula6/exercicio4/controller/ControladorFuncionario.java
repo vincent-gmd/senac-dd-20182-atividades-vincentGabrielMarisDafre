@@ -6,36 +6,31 @@ import java.util.ArrayList;
 import br.sc.senac.dd.aula6.exercicio4.model.bo.FuncionarioBO;
 import br.sc.senac.dd.aula6.exercicio4.model.vo.FuncionarioVO;
 
-/**
- * Classe criada na disciplina de POO (2018/1)
- * @author Adriano de Melo
- *
- */
 public class ControladorFuncionario {
 
-	public void cadastrarColecionadorController(FuncionarioVO funcionarioVO) throws SQLException {
+	public void cadastrarFuncionarioController(FuncionarioVO funcionarioVO) throws SQLException {
 		FuncionarioBO funcionarioBO = new FuncionarioBO();
-		funcionarioBO.cadastrarColecionadorBO(funcionarioVO);
+		funcionarioBO.cadastrarFuncionarioBO(funcionarioVO);
 	}
 
-	public void excluirColecionadorController(FuncionarioVO funcionarioVO) throws SQLException {
+	public void excluirFuncionarioController(FuncionarioVO funcionarioVO) throws SQLException {
 		FuncionarioBO funcionarioBO = new FuncionarioBO();
-		funcionarioBO.excluirColecionadorBO(funcionarioVO);
+		funcionarioBO.excluirFuncionarioBO(funcionarioVO);
 	}
 
-	public void atualizarColecionadorController(FuncionarioVO funcionarioVO) throws SQLException {
+	public void atualizarFuncionarioController(FuncionarioVO funcionarioVO) throws SQLException {
 		FuncionarioBO funcionarioBO = new FuncionarioBO();
-		funcionarioBO.atualizarColecionadorBO(funcionarioVO);
+		funcionarioBO.atualizarFuncionarioBO(funcionarioVO);
 	}
 
-	public ArrayList<FuncionarioVO> consultarTodosColecionadoresController() throws SQLException {
+	public ArrayList<FuncionarioVO> consultarTodosFuncionarioesController() throws SQLException {
 		FuncionarioBO funcionarioBO = new FuncionarioBO();
-		return funcionarioBO.consultarColecionadoresBO();
+		return funcionarioBO.consultarFuncionarioesBO();
 	}
 
-	public FuncionarioVO consultarColecionadorController(FuncionarioVO funcionarioVO) throws SQLException {
+	public FuncionarioVO consultarFuncionarioController(FuncionarioVO funcionarioVO) throws SQLException {
 		FuncionarioBO funcionarioBO = new FuncionarioBO();
-		return funcionarioBO.consultarColecionadorBO(funcionarioVO);
+		return funcionarioBO.consultarFuncionarioBO(funcionarioVO);
 	}
 
 }
