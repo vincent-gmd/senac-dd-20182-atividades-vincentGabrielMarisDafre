@@ -221,7 +221,7 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			 		
+			
 	}
 	
 }
