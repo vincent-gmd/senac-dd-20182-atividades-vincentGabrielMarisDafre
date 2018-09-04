@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class TableFuncionario {
 	String name = "funcionario";
-	ArrayList<Colum> a = new ArrayList<Colum>(); 
+	ArrayList<Colum> colums = new ArrayList<Colum>(); 
 	public TableFuncionario() {
 		super();
-		a.add(new Colum( "int" ,"idFuncionario"));
-		a.add(new Colum( "String", "nome"));
-		a.add(new Colum( "String", "cpf"));
-		a.add(new Colum( "String", "telefone"));
-		a.add(new Colum( "String", "email"));
+		colums.add(new Colum( "int" ,"idFuncionario"));
+		colums.add(new Colum( "String", "nome"));
+		colums.add(new Colum( "String", "cpf"));
+		colums.add(new Colum( "String", "telefone"));
+		colums.add(new Colum( "String", "email"));
 	}
 	
 	

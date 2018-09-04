@@ -11,56 +11,101 @@ import br.sc.senac.dd.aula6.exercicio4.model.vo.FuncionarioVO;
 
 
 public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {
+	TableFuncionario table ;
+	public TableFuncionario getTable(){
+		if(table==null){
+			table = new TableFuncionario();
+		}
+		return table;
+		
+	}
 	
 	@Override
 	public String getNomeTabela() {
 		
-		return "Funcionario";
+		return getTable().name;
 	}
 
 	@Override
 	public String getNomeColunaChavePrimaria() {
 		
-		return "idFuncionario";
+		return getTable().colums.get(0).getName();
 	}
 
 	@Override
 	public String getNomesColunasInsert() {
-		return "idFuncionario," + 
-				"nome," + 
-				"cpf," + 
-				"telefone," + 
-				"email";
+		String s= "";
+		
+		for(int i=0;i<getTable().colums.size();i++) {
+			s= s+getTable().colums.get(i).getName();
+			
+			if((i+1)!=getTable().colums.size()) {
+				s=s+",";
+			}
+		}
+		
+		return s;
 	}
 
 	@Override
 	public String getInterrogacoesInsert() {
-		return "?,?,?,?,?";
+		
+		String s= "";
+		for(int i=0;i<getTable().colums.size();i++) {
+			s= s+"?";
+			
+			if((i+1)!=getTable().colums.size()) {
+				s=s+",";
+			}
+		}
+		
+		return s;
 	}
 
 	@Override
-	public void setValoresAtributosInsert(FuncionarioVO entidade, PreparedStatement preparedStmt) {
-		/**
-		 * Exemplos:
-		 * preparedStmt.setInt(1, entidade.getId());  
-		 * preparedStmt.setString(2, entidade.getNome());
-		 *  
-		 */
+	public void setValoresAtributosInsert(FuncionarioVO entidade, PreparedStatement preparedStmt) {		
+		
+			 try {
+				preparedStmt.setString(2, entidade.getNome());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 try {
+				preparedStmt.setString(3, entidade.getCpf());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 try {
+				preparedStmt.setString(4, entidade.getTelefone());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 try {
+				preparedStmt.setString(5, entidade.getEmail());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 
+			 
 		
 	}
 
 	@Override
 	public String getValoresClausulaSetUpdate(FuncionarioVO entidade) {
 		
-		/**
-		 * Exemplos:
-		 * 
-		 * String clausulaSet = "";
-		 * clausulaSet = getNomeColunaChavePrimaria() " = " + entidade.getIdFuncionario() + ",";
-		 * clausulaSet += "NOME ='" + entidade.getNome() + "'";
-		 */
+		String clausulaSet = "";
+		 	clausulaSet = getNomeColunaChavePrimaria() +" = " + entidade.getIdFuncionario() + ",";
+		 	clausulaSet += getTable().colums.get(1)+" ='" + entidade.getNome() + ",";
+		 	clausulaSet += getTable().colums.get(2)+" ='" + entidade.getCpf() + ",";
+		 	clausulaSet += getTable().colums.get(3)+" ='" + entidade.getEmail() + ",";
+		 	clausulaSet += getTable().colums.get(4)+" ='" + entidade.getTelefone() + "'";
+		 
 		
- 		return null;
+ 		return clausulaSet;
 	}
 
 	@Override
@@ -69,11 +114,8 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {
 		
 			FuncionarioVO FuncionarioVO = new FuncionarioVO();
 			try {
-				FuncionarioVO.setIdFuncionario(Integer.parseInt(resultado.getString(1)));
-			} catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
+				FuncionarioVO.setIdFuncionario(resultado.getInt(1));
+			}catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -149,8 +191,37 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {
 
 	@Override
 	public void setValoresAtributosUpdate(FuncionarioVO entidade, PreparedStatement stmt) {
-		// TODO Auto-generated method stub
-		
+		 try {
+			 stmt.setInt(1, entidade.getIdFuncionario());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}  
+			 try {
+				 stmt.setString(2, entidade.getNome());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 try {
+				 stmt.setString(3, entidade.getCpf());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 try {
+				 stmt.setString(4, entidade.getTelefone());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 try {
+				 stmt.setString(5, entidade.getEmail());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 		
 	}
 	
 }
