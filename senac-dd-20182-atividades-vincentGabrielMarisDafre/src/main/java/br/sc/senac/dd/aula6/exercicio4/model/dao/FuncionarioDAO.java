@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import br.sc.senac.dd.aula6.exercicio4.model.vo.FuncionarioVO;
+import br.sc.senac.dd.aula6.exercicio4.util.Table;
+import br.sc.senac.dd.aula6.exercicio4.util.TableFuncionario;
 
 
 public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {

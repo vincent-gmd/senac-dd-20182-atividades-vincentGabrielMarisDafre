@@ -10,9 +10,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import br.sc.senac.dd.aula6.exercicio4.controller.ControladorFuncionario;
-import br.sc.senac.dd.aula6.exercicio4.model.dao.Table;
-import br.sc.senac.dd.aula6.exercicio4.model.dao.TableFuncionario;
 import br.sc.senac.dd.aula6.exercicio4.model.vo.FuncionarioVO;
+import br.sc.senac.dd.aula6.exercicio4.util.Table;
+import br.sc.senac.dd.aula6.exercicio4.util.TableFuncionario;
 
 import javax.swing.SpringLayout;
 import javax.swing.JButton;
@@ -86,7 +86,7 @@ public class ListaFuncionariosFrame extends JFrame {
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
-			tableFuncionario.getNames().toArray(new String[] {})
+			tableFuncionario.getNames().toArray(new String[tableFuncionario.getNames().size()] )
 		));
 		
 		
@@ -100,7 +100,7 @@ public class ListaFuncionariosFrame extends JFrame {
 		try {
 			ArrayList<FuncionarioVO> arrayFuncionario = cF.consultarTodosFuncionariosController();
 			for(int i=0;i<arrayFuncionario.size();i++) {
-				//for(int i2=0;i<tableFuncionario.getColums().size();i++) {
+				//for(int i2=0;i<tableFuncionario.getColums().size();i++) {}
 					model.setValueAt(arrayFuncionario.get(i).getIdFuncionario(), i, 1);
 					model.setValueAt(arrayFuncionario.get(i).getNome(), i, 2);
 					model.setValueAt(arrayFuncionario.get(i).getCpf(), i, 3);
