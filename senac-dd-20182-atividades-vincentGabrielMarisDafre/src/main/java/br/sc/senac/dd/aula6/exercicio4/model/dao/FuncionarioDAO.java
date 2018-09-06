@@ -25,22 +25,22 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {
 	@Override
 	public String getNomeTabela() {
 		
-		return getTable().name;
+		return getTable().getName();
 	}
 
 	@Override
 	public String getNomeColunaChavePrimaria() {
-		return getTable().colums.get(0).getName();
+		return getTable().getColums().get(0).getName();
 	}
 
 	@Override
 	public String getNomesColunasInsert() {
 		String s= "";
 		
-		for(int i=0;i<getTable().colums.size();i++) {
-			s= s+getTable().colums.get(i).getName();
+		for(int i=0;i<getTable().getColums().size();i++) {
+			s= s+getTable().getColums().get(i).getName();
 			
-			if((i+1)!=getTable().colums.size()) {
+			if((i+1)!=getTable().getColums().size()) {
 				s=s+",";
 			}
 		}
@@ -52,10 +52,10 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {
 	public String getInterrogacoesInsert() {
 		
 		String s= "";
-		for(int i=0;i<getTable().colums.size();i++) {
+		for(int i=0;i<getTable().getColums().size();i++) {
 			s= s+"?";
 			
-			if((i+1)!=getTable().colums.size()) {
+			if((i+1)!=getTable().getColums().size()) {
 				s=s+",";
 			}
 		}
@@ -85,10 +85,10 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {
 		
 		String clausulaSet = "";
 		 	clausulaSet = getNomeColunaChavePrimaria() +" = " + entidade.getIdFuncionario() + ",";
-		 	clausulaSet += getTable().colums.get(1)+" ='" + entidade.getNome() + ",";
-		 	clausulaSet += getTable().colums.get(2)+" ='" + entidade.getCpf() + ",";
-		 	clausulaSet += getTable().colums.get(3)+" ='" + entidade.getEmail() + ",";
-		 	clausulaSet += getTable().colums.get(4)+" ='" + entidade.getTelefone() + "'";
+		 	clausulaSet += getTable().getColums().get(1).getName()+" ='" + entidade.getNome() + ",";
+		 	clausulaSet += getTable().getColums().get(2).getName()+" ='" + entidade.getCpf() + ",";
+		 	clausulaSet += getTable().getColums().get(3).getName()+" ='" + entidade.getEmail() + ",";
+		 	clausulaSet += getTable().getColums().get(4).getName()+" ='" + entidade.getTelefone() + "'";
 		 
 		
  		return clausulaSet;

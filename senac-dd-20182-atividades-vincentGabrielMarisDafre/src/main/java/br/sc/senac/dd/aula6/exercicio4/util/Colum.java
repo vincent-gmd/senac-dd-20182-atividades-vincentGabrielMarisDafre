@@ -1,4 +1,4 @@
-package br.sc.senac.dd.aula6.exercicio4.model.dao;
+package br.sc.senac.dd.aula6.exercicio4.util;
 
 public class Colum {
 	private String type;
@@ -23,6 +23,9 @@ public class Colum {
 		super();
 		this.type = type;
 		this.name = name;
+	}
+	public String toString(){
+		return name;
 	}
 
 }

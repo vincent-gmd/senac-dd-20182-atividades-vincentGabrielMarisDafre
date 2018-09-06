@@ -1,7 +1,5 @@
 package br.sc.senac.dd.aula6.exercicio4.util;
 
-import br.sc.senac.dd.aula6.exercicio4.model.dao.Colum;
-
 public class TableFuncionario extends Table{
  
 	public TableFuncionario() {

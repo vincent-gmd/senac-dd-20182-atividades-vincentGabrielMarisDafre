@@ -2,8 +2,6 @@ package br.sc.senac.dd.aula6.exercicio4.util;
 
 import java.util.ArrayList;
 
-import br.sc.senac.dd.aula6.exercicio4.model.dao.Colum;
-
 public class Table {
 	String name;
 	ArrayList<Colum> colums = new ArrayList<Colum>(); 
@@ -32,6 +30,9 @@ public class Table {
 	public ArrayList<Colum> getColums(){
 		return colums;
 		
+	}
+	public String getName(){
+		return name;
 	}
 
 }
