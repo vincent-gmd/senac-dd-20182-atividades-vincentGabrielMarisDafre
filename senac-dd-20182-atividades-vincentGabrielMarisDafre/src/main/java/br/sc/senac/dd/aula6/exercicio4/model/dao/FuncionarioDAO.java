@@ -11,8 +11,8 @@ import br.sc.senac.dd.aula6.exercicio4.model.vo.FuncionarioVO;
 
 
 public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {
-	TableFuncionario table ;
-	public TableFuncionario getTable(){
+	Table table ;
+	public Table getTable(){
 		if(table==null){
 			table = new TableFuncionario();
 		}
@@ -28,7 +28,6 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {
 
 	@Override
 	public String getNomeColunaChavePrimaria() {
-		
 		return getTable().colums.get(0).getName();
 	}
 
@@ -63,32 +62,17 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {
 	}
 
 	@Override
-	public void setValoresAtributosInsert(FuncionarioVO entidade, PreparedStatement preparedStmt) {		
+	public void setValoresAtributosInsert(FuncionarioVO entidade, PreparedStatement preparedStmt) throws SQLException {		
 		
-			 try {
+			
 				preparedStmt.setString(2, entidade.getNome());
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			 try {
+			
 				preparedStmt.setString(3, entidade.getCpf());
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			 try {
+			
 				preparedStmt.setString(4, entidade.getTelefone());
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			 try {
+			
 				preparedStmt.setString(5, entidade.getEmail());
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 			 
 			 
 		
@@ -109,40 +93,21 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {
 	}
 
 	@Override
-	public FuncionarioVO construirObjetoDoResultSet(ResultSet resultado) {
+	public FuncionarioVO construirObjetoDoResultSet(ResultSet resultado) throws SQLException {
 		
 		
 			FuncionarioVO FuncionarioVO = new FuncionarioVO();
-			try {
+		
 				FuncionarioVO.setIdFuncionario(resultado.getInt(1));
-			}catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
+			
 				FuncionarioVO.setNome(resultado.getString(2));
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
+			
 				FuncionarioVO.setCpf(resultado.getString(3));
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
+			
 				FuncionarioVO.setTelefone(resultado.getString(4));
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
+			
 				FuncionarioVO.setEmail(resultado.getString(5));
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 			
 		return FuncionarioVO;
 	}
@@ -190,37 +155,18 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {
 	}
 
 	@Override
-	public void setValoresAtributosUpdate(FuncionarioVO entidade, PreparedStatement stmt) {
-		 try {
+	public void setValoresAtributosUpdate(FuncionarioVO entidade, PreparedStatement stmt) throws SQLException {
+	
 			 stmt.setInt(1, entidade.getIdFuncionario());
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}  
-			 try {
+			
 				 stmt.setString(2, entidade.getNome());
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			 try {
+			
 				 stmt.setString(3, entidade.getCpf());
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			 try {
+		
 				 stmt.setString(4, entidade.getTelefone());
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			 try {
+			
 				 stmt.setString(5, entidade.getEmail());
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 			
 	}
 	

@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.jdbc.Statement;
 
 /**
  * Classe abstrata com os métodos mínimos para que qualquer 
@@ -38,7 +37,7 @@ public abstract class BaseDAO<T> {
 
 		Connection conn = Banco.getConnection();
 		PreparedStatement preparedStmt = Banco.getPreparedStatement(conn, query, 
-				Statement.RETURN_GENERATED_KEYS);
+				java.sql.Statement.RETURN_GENERATED_KEYS);
 		int idEntidadeSalva = -1;
 
 		try {

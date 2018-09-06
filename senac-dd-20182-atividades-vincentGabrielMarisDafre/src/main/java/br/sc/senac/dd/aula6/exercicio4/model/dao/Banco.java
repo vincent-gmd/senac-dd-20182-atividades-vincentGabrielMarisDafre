@@ -51,11 +51,11 @@ import java.sql.Statement;
  */
 public class Banco {
 
-	private static final String DRIVER_MYSQL = "com.mysql.jdbc.Driver";
-	private static final String NOME_ESQUEMA = "db_dev_desktop_20182";
-	private static final String URL_CONEXAO = "jdbc:mysql://localhost:3306/" + NOME_ESQUEMA;
-	private static final String USUARIO = "root";
-	private static final String SENHA = "";
+	private static final String DRIVER_MYSQL = "com.mysql.cj.jdbc.Driver";
+	private static final String NOME_ESQUEMA = "FUNCIONARIO_2018";
+	private static final String URL_CONEXAO = "jdbc:mysql://localhost:3306/" + NOME_ESQUEMA + "?useSSL=false&useTimezone=true&serverTimezone=UTC";
+	private static final String USUARIO = "vin";
+	private static final String SENHA = "0300359";
 
 	/**
 	 * Estabelece a conexão JBDC considerando as configurações da classe Banco.
@@ -81,7 +81,8 @@ public class Banco {
 			System.out.println("Classe do Driver não foi encontrada. \n" + e.getMessage());
 			return null;
 		} catch (SQLException e) {
-			System.out.println("Erro ao obter a Connection.\n" + e.getMessage());
+			 e.printStackTrace();
+			System.out.println("Erro ao obter a Connection.\n");
 			return null;
 		}
 	}

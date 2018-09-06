@@ -23,9 +23,9 @@ public class ControladorFuncionario {
 		funcionarioBO.atualizarFuncionarioBO(funcionarioVO);
 	}
 
-	public ArrayList<FuncionarioVO> consultarTodosFuncionarioesController() throws SQLException {
+	public ArrayList<FuncionarioVO> consultarTodosFuncionariosController() throws SQLException {
 		FuncionarioBO funcionarioBO = new FuncionarioBO();
-		return funcionarioBO.consultarFuncionarioesBO();
+		return funcionarioBO.consultarFuncionariosBO();
 	}
 
 	public FuncionarioVO consultarFuncionarioController(FuncionarioVO funcionarioVO) throws SQLException {

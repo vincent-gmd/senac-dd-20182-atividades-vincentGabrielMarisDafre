@@ -1,10 +1,7 @@
 package br.sc.senac.dd.aula6.exercicio4.model.dao;
 
-import java.util.ArrayList;
-
-public class TableFuncionario {
-	String name = "funcionario";
-	ArrayList<Colum> colums = new ArrayList<Colum>(); 
+public class TableFuncionario extends Table{
+ 
 	public TableFuncionario() {
 		super();
 		colums.add(new Colum( "int" ,"idFuncionario"));
@@ -12,9 +9,9 @@ public class TableFuncionario {
 		colums.add(new Colum( "String", "cpf"));
 		colums.add(new Colum( "String", "telefone"));
 		colums.add(new Colum( "String", "email"));
+		name = "funcionario";
+		
+		
 	}
-	
-	
-	
 
 }

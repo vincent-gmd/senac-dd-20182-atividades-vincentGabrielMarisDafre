@@ -7,10 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.mysql.jdbc.Statement;
 
 /**
  * Classe abstrata com os métodos mínimos para que qualquer 
@@ -146,7 +145,7 @@ public abstract class BaseDAO<T> {
 				listaEntidades.add(objetoConsultado);
 			}
 		} catch (SQLException e){
-			System.out.println("Erro ao consultar todos os objetos da entidade" + this.getClass().toString());
+			System.out.println("Erro ao consultar todos os objetos da entidade " + this.getClass().toString());
 		} finally {
 			Banco.closeResultSet(resultado);
 			Banco.closeStatement(stmt);
@@ -197,8 +196,9 @@ public abstract class BaseDAO<T> {
 	 * e também colocar aspas simples caso o valor seja uma String.
 	 * 
 	 * @param preparedStmt o objeto que detém a consulta SQL criada.
+	 * @throws SQLException 
 	 */
-	public abstract void setValoresAtributosInsert(T entidade, PreparedStatement preparedStmt);
+	public abstract void setValoresAtributosInsert(T entidade, PreparedStatement preparedStmt) throws SQLException;
 
 	/**
 	 * Constrói uma string com os pares chave-valor da clásula SET de um UPDATE, onde:
@@ -212,7 +212,7 @@ public abstract class BaseDAO<T> {
 	 */
 	public abstract String getValoresClausulaSetUpdate(T entidade);
 
-	public abstract void setValoresAtributosUpdate(T entidade, PreparedStatement stmt);
+	public abstract void setValoresAtributosUpdate(T entidade, PreparedStatement stmt) throws SQLException;
 
 	/**
 	 * Converte um resultSet para um objeto do tipo T.
@@ -222,8 +222,9 @@ public abstract class BaseDAO<T> {
 	 * 
 	 * @return T o objeto da classe concreta, com seus atributos preenchidos com valores
 	 * oriundos do resultado.
+	 * @throws SQLException 
 	 */
-	public abstract T construirObjetoDoResultSet(ResultSet resultado);
+	public abstract T construirObjetoDoResultSet(ResultSet resultado) throws SQLException;
 
 	//TODO e como listar com filtros? Veremos mais à frente ;)
 

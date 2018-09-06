@@ -4,9 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-
-import com.mysql.jdbc.Statement;
 
 import br.sc.senac.dd.aula6.exercicio4.model.dao.Banco;
 import br.sc.senac.dd.aula6.exercicio4.model.vo.aula05.Produto;

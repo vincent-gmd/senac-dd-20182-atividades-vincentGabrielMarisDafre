@@ -51,13 +51,13 @@ public class FuncionarioBO {
 		}
 	}
 	
-	public ArrayList<FuncionarioVO> consultarFuncionarioesBO() throws SQLException {
+	public ArrayList<FuncionarioVO> consultarFuncionariosBO() throws SQLException {
 		FuncionarioDAO FuncionarioDAO = new FuncionarioDAO();
-		ArrayList<FuncionarioVO> FuncionarioesVO = (ArrayList<FuncionarioVO>) FuncionarioDAO.listarTodos();
-		if(FuncionarioesVO.isEmpty()){
+		ArrayList<FuncionarioVO> funcionariosVO = (ArrayList<FuncionarioVO>) FuncionarioDAO.listarTodos();
+		if(funcionariosVO.isEmpty()){
 			System.out.println("\nLista de Funcionario não Localizada.");
 		}
-		return FuncionarioesVO;
+		return funcionariosVO;
 	}
 
 	public FuncionarioVO consultarFuncionarioBO(FuncionarioVO FuncionarioVO) throws SQLException {
