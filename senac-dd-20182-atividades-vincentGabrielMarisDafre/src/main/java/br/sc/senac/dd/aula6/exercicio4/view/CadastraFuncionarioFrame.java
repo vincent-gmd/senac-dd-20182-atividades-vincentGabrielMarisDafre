@@ -9,19 +9,24 @@ import javax.swing.border.EmptyBorder;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+
+import br.sc.senac.dd.aula6.exercicio4.model.vo.FuncionarioVO;
+
 import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CadastraFuncionarioFrame extends JFrame {
 
-	private JPanel contentPane;
+	protected JPanel contentPane;
 	private JTextField txtNome;
 	private JTextField txtCpf;
 	private JTextField txtTelefone;
 	private JTextField txtEmail;
-	private JButton btnCadastrar;
+	protected JButton btnCadastrar;
 
 	/**
 	 * Launch the application.
@@ -105,7 +110,22 @@ public class CadastraFuncionarioFrame extends JFrame {
 		txtEmail.setColumns(10);
 		
 		btnCadastrar = new JButton("cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				inserir();
+			}
+
+			
+		});
 		contentPane.add(btnCadastrar, "4, 14");
+	}
+	protected void inserir() {
+		FuncionarioVO funcionarioVO = new FuncionarioVO();
+		funcionarioVO.setCpf(txtCpf.getText());
+		funcionarioVO.setEmail(txtEmail.getText());
+		funcionarioVO.setNome(txtNome.getText());
+		funcionarioVO.setTelefone(txtTelefone.getText());
+		
 	}
 
 }
