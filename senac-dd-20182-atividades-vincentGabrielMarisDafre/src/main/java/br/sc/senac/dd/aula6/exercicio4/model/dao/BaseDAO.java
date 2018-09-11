@@ -57,7 +57,7 @@ public abstract class BaseDAO<T> {
 			Banco.closeConnection(conn);
 		}
 		return idEntidadeSalva;
-	}
+	}	
 	public boolean atualizar(T entidade, int idEntidade) throws SQLException{
 		//SQL: 	UPDATE NOMETABELA 
 		//SET atributo1 = valor1, atributo2 = valor 2,... atributoN = valorN) WHERE IDTABELA = idEntidade
@@ -71,7 +71,7 @@ public abstract class BaseDAO<T> {
 
 		try {
 			//Este método DEVE ser implementado na classe concreta
-			this.setValoresAtributosUpdate(entidade, stmt);
+			//this.setValoresAtributosUpdate(entidade, stmt);
 
 			int retorno = stmt.executeUpdate();
 			sucessoUpdate = (retorno == CODIGO_RETORNO_SUCESSO_SQL);

@@ -10,6 +10,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
+import br.sc.senac.dd.aula6.exercicio4.controller.ControladorFuncionario;
 import br.sc.senac.dd.aula6.exercicio4.model.vo.FuncionarioVO;
 
 import com.jgoodies.forms.layout.FormSpecs;
@@ -17,15 +18,16 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
-public class CadastraFuncionarioFrame extends JFrame {
+public class CadastraFuncionarioGUI extends JFrame {
 
 	protected JPanel contentPane;
-	private JTextField txtNome;
-	private JTextField txtCpf;
-	private JTextField txtTelefone;
-	private JTextField txtEmail;
+	protected JTextField txtNome;
+	protected JTextField txtCpf;
+	protected JTextField txtTelefone;
+	protected JTextField txtEmail;
 	protected JButton btnCadastrar;
 
 	/**
@@ -35,7 +37,7 @@ public class CadastraFuncionarioFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CadastraFuncionarioFrame frame = new CadastraFuncionarioFrame();
+					CadastraFuncionarioGUI frame = new CadastraFuncionarioGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +49,7 @@ public class CadastraFuncionarioFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CadastraFuncionarioFrame() {
+	public CadastraFuncionarioGUI() {
 		setTitle("Cadasto de Funcinario");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -56,11 +58,11 @@ public class CadastraFuncionarioFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new FormLayout(new ColumnSpec[] {
 				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
+				ColumnSpec.decode("max(37dlu;default):grow"),
 				FormSpecs.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(51dlu;default):grow"),
+				ColumnSpec.decode("max(155dlu;default):grow"),
 				FormSpecs.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("default:grow"),},
+				ColumnSpec.decode("max(79dlu;default):grow"),},
 			new RowSpec[] {
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,
@@ -105,7 +107,7 @@ public class CadastraFuncionarioFrame extends JFrame {
 		contentPane.add(lblNewLabel_3, "2, 10, right, default");
 		
 		txtEmail = new JTextField();
-		txtEmail.setText("email");
+		txtEmail.setText("email ");
 		contentPane.add(txtEmail, "4, 10, fill, default");
 		txtEmail.setColumns(10);
 		
@@ -125,7 +127,13 @@ public class CadastraFuncionarioFrame extends JFrame {
 		funcionarioVO.setEmail(txtEmail.getText());
 		funcionarioVO.setNome(txtNome.getText());
 		funcionarioVO.setTelefone(txtTelefone.getText());
-		
+		ControladorFuncionario controladorFuncionario= new ControladorFuncionario();
+		try {
+			controladorFuncionario.cadastrarFuncionarioController(funcionarioVO);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

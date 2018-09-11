@@ -37,7 +37,7 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {
 	public String getNomesColunasInsert() {
 		String s= "";
 		
-		for(int i=0;i<getTable().getColums().size();i++) {
+		for(int i=1;i<getTable().getColums().size();i++) {
 			s= s+getTable().getColums().get(i).getName();
 			
 			if((i+1)!=getTable().getColums().size()) {
@@ -52,10 +52,10 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {
 	public String getInterrogacoesInsert() {
 		
 		String s= "";
-		for(int i=0;i<getTable().getColums().size();i++) {
+		for(int i=1;i<getTable().getColums().size();i++) {
 			s= s+"?";
 			
-			if((i+1)!=getTable().getColums().size()) {
+			if((i+1)<getTable().getColums().size()) {
 				s=s+",";
 			}
 		}
@@ -67,17 +67,13 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {
 	public void setValoresAtributosInsert(FuncionarioVO entidade, PreparedStatement preparedStmt) throws SQLException {		
 		
 			
-				preparedStmt.setString(2, entidade.getNome());
+				preparedStmt.setString(1, entidade.getNome());
 			
-				preparedStmt.setString(3, entidade.getCpf());
+				preparedStmt.setString(2, entidade.getCpf());
 			
-				preparedStmt.setString(4, entidade.getTelefone());
+				preparedStmt.setString(3, entidade.getTelefone());
 			
-				preparedStmt.setString(5, entidade.getEmail());
-			
-			 
-			 
-		
+				preparedStmt.setString(4, entidade.getEmail());
 	}
 
 	@Override
@@ -85,9 +81,9 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {
 		
 		String clausulaSet = "";
 		 	clausulaSet = getNomeColunaChavePrimaria() +" = " + entidade.getIdFuncionario() + ",";
-		 	clausulaSet += getTable().getColums().get(1).getName()+" ='" + entidade.getNome() + ",";
-		 	clausulaSet += getTable().getColums().get(2).getName()+" ='" + entidade.getCpf() + ",";
-		 	clausulaSet += getTable().getColums().get(3).getName()+" ='" + entidade.getEmail() + ",";
+		 	clausulaSet += getTable().getColums().get(1).getName()+" ='" + entidade.getNome() + "',";
+		 	clausulaSet += getTable().getColums().get(2).getName()+" ='" + entidade.getCpf() + "',";
+		 	clausulaSet += getTable().getColums().get(3).getName()+" ='" + entidade.getEmail() + "',";
 		 	clausulaSet += getTable().getColums().get(4).getName()+" ='" + entidade.getTelefone() + "'";
 		 
 		

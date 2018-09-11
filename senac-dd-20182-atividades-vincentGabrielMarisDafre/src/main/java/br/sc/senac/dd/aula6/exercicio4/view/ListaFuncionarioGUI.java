@@ -23,7 +23,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
-public class ListaFuncionariosFrame extends JFrame {
+public class ListaFuncionarioGUI extends JFrame {
 
 	/**
 	 * 
@@ -40,7 +40,7 @@ public class ListaFuncionariosFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ListaFuncionariosFrame frame = new ListaFuncionariosFrame();
+					ListaFuncionarioGUI frame = new ListaFuncionarioGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,11 +48,10 @@ public class ListaFuncionariosFrame extends JFrame {
 			}
 		});
 	}
-
 	/**
 	 * Create the frame.
 	 */
-	public ListaFuncionariosFrame() {
+	public ListaFuncionarioGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -97,15 +96,22 @@ public class ListaFuncionariosFrame extends JFrame {
 	}
 	void listar(){
 		ControladorFuncionario cF=new ControladorFuncionario();
+		
 		try {
 			ArrayList<FuncionarioVO> arrayFuncionario = cF.consultarTodosFuncionariosController();
+			table.setModel(new DefaultTableModel(
+					new Object[arrayFuncionario.size()][5] ,
+					tableFuncionario.getNames().toArray(new String[tableFuncionario.getNames().size()] )
+				));
+			model= table.getModel();
 			for(int i=0;i<arrayFuncionario.size();i++) {
 				//for(int i2=0;i<tableFuncionario.getColums().size();i++) {}
-					model.setValueAt(arrayFuncionario.get(i).getIdFuncionario(), i, 1);
-					model.setValueAt(arrayFuncionario.get(i).getNome(), i, 2);
-					model.setValueAt(arrayFuncionario.get(i).getCpf(), i, 3);
-					model.setValueAt(arrayFuncionario.get(i).getTelefone(), i, 4);
-					model.setValueAt(arrayFuncionario.get(i).getEmail(), i, 5);
+				
+					model.setValueAt(arrayFuncionario.get(i).getIdFuncionario(), i, 0);
+					model.setValueAt(arrayFuncionario.get(i).getNome(), i, 1);
+					model.setValueAt(arrayFuncionario.get(i).getCpf(), i, 2);
+					model.setValueAt(arrayFuncionario.get(i).getTelefone(), i, 3);
+					model.setValueAt(arrayFuncionario.get(i).getEmail(), i, 4);
 				
 				
 			}
