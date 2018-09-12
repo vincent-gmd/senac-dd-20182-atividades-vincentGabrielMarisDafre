@@ -17,12 +17,6 @@ public class FuncionarioDAO extends BaseDAO_Tables<FuncionarioVO> {
 	public FuncionarioDAO(){
 		setTable(new TableFuncionario()); 
 	}
-	public Table getTable(){
-		if(table==null){
-			table = new TableFuncionario();
-		}
-		return table;
-	}
 	
 	@Override
 	public void setValoresAtributosInsert(FuncionarioVO entidade, PreparedStatement preparedStmt) throws SQLException {		

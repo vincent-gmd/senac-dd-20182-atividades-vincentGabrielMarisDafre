@@ -10,7 +10,6 @@ import br.sc.senac.dd.aula6.exercicio4.util.TableFuncionario;
 public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 
 	protected  Table table;
-
 	public Table getTable(){
 		return table;	
 	}
