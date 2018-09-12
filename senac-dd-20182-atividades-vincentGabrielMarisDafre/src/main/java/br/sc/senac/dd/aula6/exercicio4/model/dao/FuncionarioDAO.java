@@ -80,12 +80,20 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {
 	public String getValoresClausulaSetUpdate(FuncionarioVO entidade) {
 		
 		String clausulaSet = "";
-		 	clausulaSet = getNomeColunaChavePrimaria() +" = " + entidade.getIdFuncionario() + ",";
+		for(int i=0;i<getTable().getColums().size();i++) {
+			clausulaSet += getTable().getColums().get(i).getName()+" =  ?";
+					if((i+1)<getTable().getColums().size()) {
+						clausulaSet+=",";
+					}
+		}
+
+		 /*
+		  	clausulaSet = getNomeColunaChavePrimaria() +" = " + entidade.getIdFuncionario() + ",";
 		 	clausulaSet += getTable().getColums().get(1).getName()+" ='" + entidade.getNome() + "',";
 		 	clausulaSet += getTable().getColums().get(2).getName()+" ='" + entidade.getCpf() + "',";
 		 	clausulaSet += getTable().getColums().get(3).getName()+" ='" + entidade.getEmail() + "',";
 		 	clausulaSet += getTable().getColums().get(4).getName()+" ='" + entidade.getTelefone() + "'";
-		 
+		 */
 		
  		return clausulaSet;
 	}
@@ -130,6 +138,26 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {
 		}
 		return false;
 	}
+	public Boolean buscaPorCpf(String cpf) {
+		Connection conn = Banco.getConnection();
+		Statement stmt = Banco.getStatement(conn);
+		ResultSet resultado = null;
+		String query = "SELECT * FROM Funcionario WHERE cpf like '" + cpf + "'";
+		try {
+			resultado = stmt.executeQuery(query);
+			if (resultado.next()){
+				return true;
+			}
+		} catch (SQLException e) {
+			System.out.println("Erro ao executar a Query que verifica existência de Funcionario por CPF.");
+			return null;
+		} finally {
+			Banco.closeResultSet(resultado);
+			Banco.closeStatement(stmt);
+			Banco.closeConnection(conn);
+		}
+		return false;
+	}
 
 	public boolean existeRegistroPorIdFuncionario(int idFuncionario) {
 		Connection conn = Banco.getConnection();
@@ -155,15 +183,15 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {
 	@Override
 	public void setValoresAtributosUpdate(FuncionarioVO entidade, PreparedStatement stmt) throws SQLException {
 	
-			 stmt.setInt(1, entidade.getIdFuncionario());
+			 	stmt.setInt(1, entidade.getIdFuncionario());
 			
-				 stmt.setString(2, entidade.getNome());
+				stmt.setString(2, entidade.getNome());
 			
-				 stmt.setString(3, entidade.getCpf());
+				stmt.setString(3, entidade.getCpf());
 		
-				 stmt.setString(4, entidade.getTelefone());
+				stmt.setString(4, entidade.getTelefone());
 			
-				 stmt.setString(5, entidade.getEmail());
+				stmt.setString(5, entidade.getEmail());
 			
 			
 	}

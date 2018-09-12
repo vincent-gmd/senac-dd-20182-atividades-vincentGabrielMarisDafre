@@ -71,7 +71,7 @@ public abstract class BaseDAO<T> {
 
 		try {
 			//Este método DEVE ser implementado na classe concreta
-			//this.setValoresAtributosUpdate(entidade, stmt);
+			this.setValoresAtributosUpdate(entidade, stmt);
 
 			int retorno = stmt.executeUpdate();
 			sucessoUpdate = (retorno == CODIGO_RETORNO_SUCESSO_SQL);

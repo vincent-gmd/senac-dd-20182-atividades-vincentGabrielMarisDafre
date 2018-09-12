@@ -1,13 +1,5 @@
 package br.sc.senac.dd.aula6.exercicio4.model.vo;
 
-/**
- * Classe criada na disciplina de POO (2018/1)
- * 
- * Representa um Value Object (VO) de um Funcionario
- * 
- * @author Adriano de Melo
- * 
- */
 public class FuncionarioVO {
 	
 	private int idFuncionario;
@@ -71,9 +63,9 @@ public class FuncionarioVO {
 
 	public void imprimir(){
 		System.out.printf("%3d   %-20s   %-15s   %-12s   %-20s \n", 
-		this.getIdFuncionario(), 
-		this.getNome(), 
-		this.getCpf(), 
+		this.getIdFuncionario(),  
+		this.getNome(),  
+		this.getCpf(),  
 		this.getTelefone(), 
 		this.getEmail());
 	}
