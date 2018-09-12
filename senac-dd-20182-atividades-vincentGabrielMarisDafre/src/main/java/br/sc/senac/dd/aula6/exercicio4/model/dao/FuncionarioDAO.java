@@ -12,110 +12,47 @@ import br.sc.senac.dd.aula6.exercicio4.util.Table;
 import br.sc.senac.dd.aula6.exercicio4.util.TableFuncionario;
 
 
-public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {
-	Table table ;
+public class FuncionarioDAO extends BaseDAO_Tables<FuncionarioVO> {
+	
+	public FuncionarioDAO(){
+		setTable(new TableFuncionario()); 
+	}
 	public Table getTable(){
 		if(table==null){
 			table = new TableFuncionario();
 		}
 		return table;
-		
 	}
 	
 	@Override
-	public String getNomeTabela() {
-		
-		return getTable().getName();
-	}
-
-	@Override
-	public String getNomeColunaChavePrimaria() {
-		return getTable().getColums().get(0).getName();
-	}
-
-	@Override
-	public String getNomesColunasInsert() {
-		String s= "";
-		
-		for(int i=1;i<getTable().getColums().size();i++) {
-			s= s+getTable().getColums().get(i).getName();
-			
-			if((i+1)!=getTable().getColums().size()) {
-				s=s+",";
-			}
-		}
-		
-		return s;
-	}
-
-	@Override
-	public String getInterrogacoesInsert() {
-		
-		String s= "";
-		for(int i=1;i<getTable().getColums().size();i++) {
-			s= s+"?";
-			
-			if((i+1)<getTable().getColums().size()) {
-				s=s+",";
-			}
-		}
-		
-		return s;
-	}
-
-	@Override
 	public void setValoresAtributosInsert(FuncionarioVO entidade, PreparedStatement preparedStmt) throws SQLException {		
-		
-			
 				preparedStmt.setString(1, entidade.getNome());
-			
 				preparedStmt.setString(2, entidade.getCpf());
-			
 				preparedStmt.setString(3, entidade.getTelefone());
-			
 				preparedStmt.setString(4, entidade.getEmail());
 	}
-
-	@Override
-	public String getValoresClausulaSetUpdate(FuncionarioVO entidade) {
-		
-		String clausulaSet = "";
-		for(int i=0;i<getTable().getColums().size();i++) {
-			clausulaSet += getTable().getColums().get(i).getName()+" =  ?";
-					if((i+1)<getTable().getColums().size()) {
-						clausulaSet+=",";
-					}
-		}
-
-		 /*
-		  	clausulaSet = getNomeColunaChavePrimaria() +" = " + entidade.getIdFuncionario() + ",";
-		 	clausulaSet += getTable().getColums().get(1).getName()+" ='" + entidade.getNome() + "',";
-		 	clausulaSet += getTable().getColums().get(2).getName()+" ='" + entidade.getCpf() + "',";
-		 	clausulaSet += getTable().getColums().get(3).getName()+" ='" + entidade.getEmail() + "',";
-		 	clausulaSet += getTable().getColums().get(4).getName()+" ='" + entidade.getTelefone() + "'";
-		 */
-		
- 		return clausulaSet;
-	}
-
 	@Override
 	public FuncionarioVO construirObjetoDoResultSet(ResultSet resultado) throws SQLException {
-		
 		
 			FuncionarioVO FuncionarioVO = new FuncionarioVO();
 		
 				FuncionarioVO.setIdFuncionario(resultado.getInt(1));
-			
 				FuncionarioVO.setNome(resultado.getString(2));
-			
 				FuncionarioVO.setCpf(resultado.getString(3));
-			
 				FuncionarioVO.setTelefone(resultado.getString(4));
-			
 				FuncionarioVO.setEmail(resultado.getString(5));
 			
 			
 		return FuncionarioVO;
+	}
+	@Override
+	public void setValoresAtributosUpdate(FuncionarioVO entidade, PreparedStatement stmt) throws SQLException {
+	
+			 	stmt.setInt(1, entidade.getIdFuncionario());
+				stmt.setString(2, entidade.getNome());			
+				stmt.setString(3, entidade.getCpf());		
+				stmt.setString(4, entidade.getTelefone());
+				stmt.setString(5, entidade.getEmail());
 	}
 
 	public Boolean existeRegistroPorCpf(String cpf) {
@@ -138,7 +75,7 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {
 		}
 		return false;
 	}
-	public Boolean buscaPorCpf(String cpf) {
+	public FuncionarioVO pesquisarPorCpf(String cpf) {
 		Connection conn = Banco.getConnection();
 		Statement stmt = Banco.getStatement(conn);
 		ResultSet resultado = null;
@@ -146,17 +83,18 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {
 		try {
 			resultado = stmt.executeQuery(query);
 			if (resultado.next()){
-				return true;
+				FuncionarioVO funcionarioVO= construirObjetoDoResultSet(resultado);
+				return  funcionarioVO ;
 			}
 		} catch (SQLException e) {
-			System.out.println("Erro ao executar a Query que verifica existência de Funcionario por CPF.");
+			System.out.println("Erro ao executar a Query que busca Funcionario por CPF.");
 			return null;
 		} finally {
 			Banco.closeResultSet(resultado);
 			Banco.closeStatement(stmt);
 			Banco.closeConnection(conn);
 		}
-		return false;
+		return null;
 	}
 
 	public boolean existeRegistroPorIdFuncionario(int idFuncionario) {
@@ -180,20 +118,6 @@ public class FuncionarioDAO extends BaseDAO<FuncionarioVO> {
 		return false;
 	}
 
-	@Override
-	public void setValoresAtributosUpdate(FuncionarioVO entidade, PreparedStatement stmt) throws SQLException {
-	
-			 	stmt.setInt(1, entidade.getIdFuncionario());
-			
-				stmt.setString(2, entidade.getNome());
-			
-				stmt.setString(3, entidade.getCpf());
-		
-				stmt.setString(4, entidade.getTelefone());
-			
-				stmt.setString(5, entidade.getEmail());
-			
-			
-	}
+
 	
 }

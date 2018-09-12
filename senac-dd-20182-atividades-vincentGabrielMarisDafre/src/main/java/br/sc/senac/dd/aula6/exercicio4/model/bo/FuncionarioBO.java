@@ -12,7 +12,7 @@ public class FuncionarioBO {
 	public void cadastrarFuncionarioBO(FuncionarioVO FuncionarioVO) throws SQLException {
 		FuncionarioDAO FuncionarioDAO = new FuncionarioDAO();
 		if(FuncionarioDAO.existeRegistroPorCpf(FuncionarioVO.getCpf())){
-			System.out.println("\nFuncionario já Cadastrado");
+			System.out.println("\nFuncionario já Cadastrado(cpf)");
 		} else {
 			int idFuncionario = FuncionarioDAO.inserir(FuncionarioVO);
 			if(idFuncionario > 0){
@@ -61,6 +61,14 @@ public class FuncionarioBO {
 	}
 
 	public FuncionarioVO consultarFuncionarioBO(FuncionarioVO FuncionarioVO) throws SQLException {
+		FuncionarioDAO FuncionarioDAO = new FuncionarioDAO();
+		FuncionarioVO Funcionario = FuncionarioDAO.pesquisarPorId(FuncionarioVO.getIdFuncionario());
+		if(Funcionario == null){
+			System.out.println("\nFuncionario não Localizado.");
+		}
+		return Funcionario;
+	}
+	public FuncionarioVO consultarFuncionarioPorCPFBO(FuncionarioVO FuncionarioVO) throws SQLException {
 		FuncionarioDAO FuncionarioDAO = new FuncionarioDAO();
 		FuncionarioVO Funcionario = FuncionarioDAO.pesquisarPorId(FuncionarioVO.getIdFuncionario());
 		if(Funcionario == null){
