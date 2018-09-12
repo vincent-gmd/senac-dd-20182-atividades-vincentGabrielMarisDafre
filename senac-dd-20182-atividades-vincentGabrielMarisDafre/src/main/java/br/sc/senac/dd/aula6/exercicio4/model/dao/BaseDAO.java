@@ -62,7 +62,7 @@ public abstract class BaseDAO<T> {
 		//SQL: 	UPDATE NOMETABELA 
 		//SET atributo1 = valor1, atributo2 = valor 2,... atributoN = valorN) WHERE IDTABELA = idEntidade
 		String sql = "UPDATE "+ getNomeTabela() + 
-				" SET " + getValoresClausulaSetUpdate(entidade)
+				" SET " + getValoresClausulaSetUpdate()
 				+ " WHERE " +  getNomeColunaChavePrimaria() + " = " + idEntidade;
 
 		Connection conn = Banco.getConnection();
@@ -153,6 +153,7 @@ public abstract class BaseDAO<T> {
 		}
 		return listaEntidades;
 	}
+	
 
 
 	/**
@@ -210,7 +211,7 @@ public abstract class BaseDAO<T> {
 	 * 
 	 * @return String a clásula SET preenchida por completo.
 	 */
-	public abstract String getValoresClausulaSetUpdate(T entidade);
+	public abstract String getValoresClausulaSetUpdate();
 
 	public abstract void setValoresAtributosUpdate(T entidade, PreparedStatement stmt) throws SQLException;
 

@@ -10,8 +10,6 @@ public class TableFuncionario extends Table{
 		colums.add(new Colum( "String", "telefone"));
 		colums.add(new Colum( "String", "email"));
 		name = "funcionario";
-		
-		
 	}
 
 }
