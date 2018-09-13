@@ -14,7 +14,6 @@ import java.util.List;
 
 import br.sc.senac.dd.aula6.exercicio4.util.Colum;
 import br.sc.senac.dd.aula6.exercicio4.util.Table;
-import br.sc.senac.dd.aula6.exercicio4.util.TableFuncionario;
 
 public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 
@@ -111,13 +110,32 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 		return clausulaSet;
 	}
 	
-	
+	public List<T> listarTodosWhereStringsLike(ArrayList<Colum> colums ,ArrayList<String> values) throws SQLException{
+		String sql = "SELECT * FROM " + getNomeTabela()+getValoresClausulaWhereLike(colums);
+		
 
-	@Override
-	public T construirObjetoDoResultSet(ResultSet resultado) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		Connection conn = Banco.getConnection();
+		PreparedStatement stmt = Banco.getPreparedStatement(conn, sql);
+		ResultSet resultado = null;
+		ArrayList<T> listaEntidades = new ArrayList<T>();
+		
+		try{
+			this.setValoresAtributosWhereStrings(colums, values, stmt);
+			resultado = stmt.executeQuery(sql);
+			while(resultado.next()){
+				T objetoConsultado = construirObjetoDoResultSet(resultado);
+				listaEntidades.add(objetoConsultado);
+			}
+		} catch (SQLException e){
+			System.out.println("Erro ao consultar todos os objetos da entidade " + this.getClass().toString());
+		} finally {
+			Banco.closeResultSet(resultado);
+			Banco.closeStatement(stmt);
+			Banco.closeConnection(conn);
+		}
+		return listaEntidades;
 	}
+	
 	public List<T> listarTodosWhere(ArrayList<Colum> colums ,ArrayList<Object> values) throws SQLException{
 		String sql = "SELECT * FROM " + getNomeTabela()+getValoresClausulaWhere(colums);
 		
@@ -142,6 +160,11 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 			Banco.closeConnection(conn);
 		}
 		return listaEntidades;
+	}
+	public void setValoresAtributosWhereStrings(ArrayList<Colum> colums ,ArrayList<String> values,PreparedStatement stmt) throws SQLException{
+		for(int i =0;i<values.size();i++) {
+			stmt.setString(i, values.get(i).toString());
+		}
 	}
 	public void setValoresAtributosWhere(ArrayList<Colum> colums ,ArrayList<Object> values,PreparedStatement stmt) throws SQLException{
 		for(int i =0;i<values.size();i++) {

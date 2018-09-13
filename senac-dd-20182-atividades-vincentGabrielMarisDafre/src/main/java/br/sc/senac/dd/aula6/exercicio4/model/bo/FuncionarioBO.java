@@ -70,7 +70,7 @@ public class FuncionarioBO {
 	}
 	public FuncionarioVO consultarFuncionarioPorCpfBO(FuncionarioVO FuncionarioVO) throws SQLException {
 		FuncionarioDAO FuncionarioDAO = new FuncionarioDAO();
-		FuncionarioVO Funcionario = FuncionarioDAO.pesquisarPorId(FuncionarioVO.getIdFuncionario());
+		FuncionarioVO Funcionario = FuncionarioDAO.pesquisarPorCpf(FuncionarioVO.getCpf());
 		if(Funcionario == null){
 			System.out.println("\nFuncionario não Localizado.");
 		}
