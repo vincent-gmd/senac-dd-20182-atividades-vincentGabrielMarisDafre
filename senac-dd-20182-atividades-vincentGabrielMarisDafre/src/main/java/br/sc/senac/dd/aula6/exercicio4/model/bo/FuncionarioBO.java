@@ -68,7 +68,7 @@ public class FuncionarioBO {
 		}
 		return Funcionario;
 	}
-	public FuncionarioVO consultarFuncionarioPorCPFBO(FuncionarioVO FuncionarioVO) throws SQLException {
+	public FuncionarioVO consultarFuncionarioPorCpfBO(FuncionarioVO FuncionarioVO) throws SQLException {
 		FuncionarioDAO FuncionarioDAO = new FuncionarioDAO();
 		FuncionarioVO Funcionario = FuncionarioDAO.pesquisarPorId(FuncionarioVO.getIdFuncionario());
 		if(Funcionario == null){

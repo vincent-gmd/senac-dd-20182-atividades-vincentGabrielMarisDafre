@@ -51,10 +51,12 @@ public class FuncionarioDAO extends BaseDAO_Tables<FuncionarioVO> {
 
 	public Boolean existeRegistroPorCpf(String cpf) {
 		Connection conn = Banco.getConnection();
-		Statement stmt = Banco.getStatement(conn);
+		
 		ResultSet resultado = null;
-		String query = "SELECT * FROM Funcionario WHERE cpf like '" + cpf + "'";
+		String query = "SELECT * FROM Funcionario WHERE cpf like ?";
+		PreparedStatement stmt = Banco.getPreparedStatement(conn, query);
 		try {
+			stmt.setString(1, cpf);
 			resultado = stmt.executeQuery(query);
 			if (resultado.next()){
 				return true;
@@ -71,11 +73,13 @@ public class FuncionarioDAO extends BaseDAO_Tables<FuncionarioVO> {
 	}
 	public FuncionarioVO pesquisarPorCpf(String cpf) {
 		Connection conn = Banco.getConnection();
-		Statement stmt = Banco.getStatement(conn);
 		ResultSet resultado = null;
-		String query = "SELECT * FROM Funcionario WHERE cpf like '" + cpf + "'";
+		String query = "SELECT * FROM Funcionario WHERE cpf like ?";
+		PreparedStatement stmt = Banco.getPreparedStatement(conn, query);
+	
 		try {
-			resultado = stmt.executeQuery(query);
+			stmt.setString(1, cpf);
+			resultado  = stmt.executeQuery();
 			if (resultado.next()){
 				FuncionarioVO funcionarioVO= construirObjetoDoResultSet(resultado);
 				return  funcionarioVO ;

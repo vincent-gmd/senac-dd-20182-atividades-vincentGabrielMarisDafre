@@ -34,7 +34,7 @@ public class ControladorFuncionario {
 	}
 	public FuncionarioVO consultarFuncionarioPorCPFController(FuncionarioVO funcionarioVO) throws SQLException {
 		FuncionarioBO funcionarioBO = new FuncionarioBO();
-		return funcionarioBO.consultarFuncionarioBO(funcionarioVO);
+		return funcionarioBO.consultarFuncionarioPorCpfBO(funcionarioVO);
 	}
 
 }
