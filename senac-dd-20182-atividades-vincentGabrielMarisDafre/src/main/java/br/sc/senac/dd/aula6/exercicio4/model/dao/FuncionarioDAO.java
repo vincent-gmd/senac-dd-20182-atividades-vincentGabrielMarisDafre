@@ -97,11 +97,12 @@ public class FuncionarioDAO extends BaseDAO_Tables<FuncionarioVO> {
 
 	public boolean existeRegistroPorIdFuncionario(int idFuncionario) {
 		Connection conn = Banco.getConnection();
-		Statement stmt = Banco.getStatement(conn);
 		ResultSet resultado = null;
-		String query = "SELECT * FROM Funcionario WHERE idFuncionario = " + idFuncionario;
+		String query = "SELECT * FROM Funcionario WHERE idFuncionario = ?";
+		PreparedStatement stmt = Banco.getPreparedStatement(conn, query);
 		try {
-			resultado = stmt.executeQuery(query);
+			stmt.setInt(1, idFuncionario);
+			resultado  = stmt.executeQuery();
 			if (resultado.next()){
 				return true;
 			}
