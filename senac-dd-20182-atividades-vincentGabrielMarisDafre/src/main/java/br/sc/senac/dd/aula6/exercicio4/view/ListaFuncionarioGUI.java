@@ -1,6 +1,5 @@
 package br.sc.senac.dd.aula6.exercicio4.view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -11,7 +10,6 @@ import javax.swing.table.TableModel;
 
 import br.sc.senac.dd.aula6.exercicio4.controller.ControladorFuncionario;
 import br.sc.senac.dd.aula6.exercicio4.model.vo.FuncionarioVO;
-import br.sc.senac.dd.aula6.exercicio4.util.Table;
 import br.sc.senac.dd.aula6.exercicio4.util.TableFuncionario;
 
 import javax.swing.SpringLayout;

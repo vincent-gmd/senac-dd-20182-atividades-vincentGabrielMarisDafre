@@ -12,6 +12,10 @@ import br.sc.senac.dd.aula6.exercicio4.model.vo.FuncionarioVO;
 public class ExcluirFuncionarioGUI extends AlteraFuncionarioGUI {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4592466520661309139L;
+	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {

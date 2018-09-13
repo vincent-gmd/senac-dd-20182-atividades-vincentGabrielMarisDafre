@@ -1,12 +1,8 @@
 package br.sc.senac.dd.aula6.exercicio4.view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
 import br.sc.senac.dd.aula6.exercicio4.controller.ControladorFuncionario;
 import br.sc.senac.dd.aula6.exercicio4.model.vo.FuncionarioVO;
 
@@ -19,6 +15,10 @@ import java.awt.event.ActionEvent;
 
 public class AlteraFuncionarioGUI extends CadastraFuncionarioGUI {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3283234808089085746L;
 	protected JTextField txtIdfuncionario;
 	JButton btnBuscarPorCpf;
 	JButton btnBuscarPorId;
@@ -79,6 +79,18 @@ public class AlteraFuncionarioGUI extends CadastraFuncionarioGUI {
 		FuncionarioVO funcionarioVO = new FuncionarioVO();
 		ControladorFuncionario controladorFuncionario= new ControladorFuncionario();
 		funcionarioVO.setCpf(txtCpf.getText());
+		try {
+			funcionarioVO =controladorFuncionario.consultarFuncionarioPorCPFController(funcionarioVO);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return;
+		}
+		txtIdfuncionario.setText(new Integer(funcionarioVO.getIdFuncionario()).toString());
+		txtNome.setText(funcionarioVO.getNome());
+		txtCpf.setText(funcionarioVO.getCpf());
+		txtTelefone.setText(funcionarioVO.getTelefone());
+		txtEmail.setText(funcionarioVO.getEmail());
 
 	}
 
@@ -87,13 +99,19 @@ public class AlteraFuncionarioGUI extends CadastraFuncionarioGUI {
 		FuncionarioVO funcionarioVO = new FuncionarioVO();
 		funcionarioVO.setIdFuncionario(Integer.parseInt(txtIdfuncionario.getText()) );
 		try {
-			controladorFuncionario.consultarFuncionarioController(funcionarioVO);
+			funcionarioVO =controladorFuncionario.consultarFuncionarioController(funcionarioVO);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return;
 		}
-
+		txtIdfuncionario.setText(new Integer(funcionarioVO.getIdFuncionario()).toString());
+		txtNome.setText(funcionarioVO.getNome());
+		txtCpf.setText(funcionarioVO.getCpf());
+		txtTelefone.setText(funcionarioVO.getTelefone());
+		txtEmail.setText(funcionarioVO.getEmail());
 	}
+
 
 	@Override
 	protected void inserir() {

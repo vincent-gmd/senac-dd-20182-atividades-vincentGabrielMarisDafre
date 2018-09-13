@@ -4,11 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-
 import br.sc.senac.dd.aula6.exercicio4.model.vo.FuncionarioVO;
-import br.sc.senac.dd.aula6.exercicio4.util.Table;
 import br.sc.senac.dd.aula6.exercicio4.util.TableFuncionario;
 
 

@@ -1,6 +1,5 @@
 package br.sc.senac.dd.aula6.exercicio4.view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -23,6 +22,10 @@ import java.awt.event.ActionEvent;
 
 public class CadastraFuncionarioGUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3916982128939894737L;
 	protected JPanel contentPane;
 	protected JTextField txtNome;
 	protected JTextField txtCpf;
