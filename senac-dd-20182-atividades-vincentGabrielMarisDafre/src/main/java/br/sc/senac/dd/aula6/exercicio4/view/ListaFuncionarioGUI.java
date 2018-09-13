@@ -9,8 +9,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import br.sc.senac.dd.aula6.exercicio4.controller.ControladorFuncionario;
+import br.sc.senac.dd.aula6.exercicio4.model.dao.TableFuncionario;
 import br.sc.senac.dd.aula6.exercicio4.model.vo.FuncionarioVO;
-import br.sc.senac.dd.aula6.exercicio4.util.TableFuncionario;
 
 import javax.swing.SpringLayout;
 import javax.swing.JButton;

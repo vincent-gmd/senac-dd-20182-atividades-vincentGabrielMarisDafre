@@ -1,4 +1,4 @@
-package br.sc.senac.dd.aula6.exercicio4.util;
+package br.sc.senac.dd.aula6.exercicio4.model.dao;
 
 public class TableFuncionario extends Table{
  

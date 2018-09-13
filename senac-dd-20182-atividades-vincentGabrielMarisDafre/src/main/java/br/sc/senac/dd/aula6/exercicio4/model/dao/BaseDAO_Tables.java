@@ -12,9 +12,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.sc.senac.dd.aula6.exercicio4.util.Colum;
-import br.sc.senac.dd.aula6.exercicio4.util.Table;
-
 public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 
 	protected  Table table;

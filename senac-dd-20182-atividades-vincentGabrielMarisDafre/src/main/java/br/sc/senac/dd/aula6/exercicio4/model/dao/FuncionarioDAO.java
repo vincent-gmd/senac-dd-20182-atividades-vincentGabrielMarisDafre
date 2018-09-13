@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import br.sc.senac.dd.aula6.exercicio4.model.vo.FuncionarioVO;
-import br.sc.senac.dd.aula6.exercicio4.util.TableFuncionario;
 
 
 public class FuncionarioDAO extends BaseDAO_Tables<FuncionarioVO> {
